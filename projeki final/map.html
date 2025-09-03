@@ -21,86 +21,94 @@
   </style>
 </head>
 <body>
-  <div id="map"></div>
+<div class="h-150 w-200 mt-30 ml-30 rounded-[100px]" id="map"></div>
 
   <script>
-    var map = L.map('map').setView();
-  
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-  
-    var current_position, current_accuracy;
-    var routingControl = null;
-  
-    const destinationLatLng = L.latLng(42.6629, 21.1655); // Your fixed destination
-  
-    function routeToDestination() {
-      if (!current_position) {
-        return;
-      }
-  
-      // Remove old route if exists
-      if (routingControl) {
-        map.removeControl(routingControl);
-      }
-  
-      routingControl = L.Routing.control({
-        waypoints: [
-          current_position.getLatLng(), // User location
-          destinationLatLng             // Fixed destination
-        ],
-        routeWhileDragging: false,
-        showAlternatives: false,
-        draggableWaypoints: false,
-        addWaypoints: false
-      }).addTo(map);
-    }
-  
-    function onLocationFound(e) {
-      // Remove old position
-      if (current_position) {
-        map.removeLayer(current_position);
-        map.removeLayer(current_accuracy);
-      }
-  
-      var radius = e.accuracy / 2;
-  
-      current_position = L.marker(e.latlng).addTo(map)
-        .bindPopup("You are within " + radius + " meters from this point").openPopup();
-  
-      current_accuracy = L.circle(e.latlng, radius).addTo(map);
-  
-      routeToDestination(); // <- Route to fixed destination
-    }
-  
-    function onLocationError(e) {
-      alert(e.message);
-    }
-  
-    map.on('locationfound', onLocationFound);
-    map.on('locationerror', onLocationError);
-  
-    function locate() {
-      map.locate({setView: true, maxZoom: 16});
-    }
-  
-    setInterval(locate, 10000);
-    
-    
-    var map = L.map('map');
+   var map = L.map('map').setView([42.675402493192664, 21.211059469002848], 14);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap contributors'
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-L.Routing.control({
+var current_position, current_accuracy;
+var routingControl = null;
+let firstLocation = true;
+
+// Array of destinations with extra info
+const destinations = [
+  { name: "Two Wheels-Bicycles", lat: 42.65531637659064, lng: 21.152854861083622, desc: "Famous park in Prishtina." },
+  { name: "Two Wheels-Motorcycles", lat: 42.655521882847246, lng: 21.178661796143018, desc: "Main square in the city." },
+  { name: "Two Wheels-E bikes", lat: 42.655943179546696, lng: 21.18868669030423, desc: "Unique architecture & knowledge hub." }
+];
+
+// Function to route to a clicked destination
+function routeToDestination(destinationLatLng, destinationName) {
+  if (!current_position) return;
+
+  // Remove previous route
+  if (routingControl) {
+    map.removeControl(routingControl);
+  }
+
+  routingControl = L.Routing.control({
     waypoints: [
-        L.latLng(57.74, 11.94),
-        L.latLng(57.6792, 11.949)
+      current_position.getLatLng(),
+      destinationLatLng
     ],
-    routeWhileDragging: true
-}).addTo(map);
+    routeWhileDragging: false,
+    showAlternatives: false,
+    draggableWaypoints: false,
+    addWaypoints: false
+  }).addTo(map);
+}
+
+// Place destination markers with popups
+destinations.forEach(dest => {
+  const marker = L.marker([dest.lat, dest.lng]).addTo(map);
+
+  const popupContent = `
+    <b>${dest.name}</b><br>
+    ${dest.desc}<br>
+    <button onclick="routeToDestination(L.latLng(${dest.lat}, ${dest.lng}), '${dest.name}')">
+      Route here
+    </button>
+  `;
+
+  marker.bindPopup(popupContent);
+});
+
+// Handle user location
+function onLocationFound(e) {
+  if (current_position) {
+    map.removeLayer(current_position);
+    map.removeLayer(current_accuracy);
+  }
+
+  var radius = e.accuracy / 2;
+
+  current_position = L.marker(e.latlng).addTo(map)
+    .bindPopup("You are here!").openPopup();
+
+  current_accuracy = L.circle(e.latlng, radius).addTo(map);
+
+  if (firstLocation) {
+    map.setView(e.latlng, 14);
+    firstLocation = false;
+  }
+}
+
+function onLocationError(e) {
+  alert(e.message);
+}
+
+map.on('locationfound', onLocationFound);
+map.on('locationerror', onLocationError);
+
+function locate() {
+  map.locate({setView: false, maxZoom: 14});
+}
+
+setInterval(locate, 3000); // Update location every 3 seconds
 
   </script>
   
