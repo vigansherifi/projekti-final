@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us - Two Wheels</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="bg-gray-100 font-sans">
+    <!-- Navbar -->
+    <nav class="bg-gray-800 text-white p-4">
+      <div class="container mx-auto flex justify-between items-center">
+        <h1 class="text-2xl font-bold">Two Wheels</h1>
+        <ul class="flex space-x-6">
+          <li><a href="index.html" class="hover:text-gray-300">Home</a></li>
+          <li>
+            <a href="biciklla1.html" class="hover:text-gray-300">Bicycles</a>
+          </li>
+          <li>
+            <a href="motori.html" class="hover:text-gray-300">Motorbikes</a>
+          </li>
+          <li>
+            <a href="Electric-bike.html" class="hover:text-gray-300">E-bikes</a>
+          </li>
+          <li><a href="about.html" class="hover:text-gray-300">About</a></li>
+          <li>
+            <a href="contact.html" class="hover:text-gray-300">Contact</a>
+          </li>
+          <li><a href="map.html" class="hover:text-gray-300">Map</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      class="bg-cover bg-center h-64"
+      style="background-image: url('backgrond-img.PNG')"
+    >
+      <div
+        class="bg-black bg-opacity-50 h-full flex items-center justify-center"
+      >
+        <h2 class="text-white text-4xl font-bold">Contact Us</h2>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="container mx-auto py-12 px-6">
+      <div class="grid md:grid-cols-2 gap-8">
+        <!-- Contact Info -->
+        <div>
+          <h3 class="text-2xl font-bold mb-4">Get in Touch</h3>
+          <p class="text-gray-700 mb-4">
+            At <strong>Two Wheels</strong>, we’re always here to help you with
+            your biking needs. Whether you have a question about our bicycles,
+            motorbikes, or e-bikes, feel free to reach out!
+          </p>
+          <p class="mb-2">
+            <strong>📍 Address:</strong> Rruga Rifat Berisha, Prishtina, Kosovo
+          </p>
+          <p class="mb-2"><strong>📞 Phone:</strong> +383 44 123 456</p>
+          <p class="mb-2"><strong>✉️ Email:</strong> info@twowheels.com</p>
+        </div>
+
+        <!-- Contact Form -->
+        <div class="bg-white p-6 rounded-lg shadow-md">
+          <h3 class="text-xl font-bold mb-4">Send us a Message</h3>
+          <form
+            onsubmit="event.preventDefault(); alert('✅ Thank you! We will get back to you soon.');"
+            class="space-y-4"
+          >
+            <div>
+              <label class="block font-medium">Your Name</label>
+              <input
+                type="text"
+                required
+                class="w-full border border-gray-300 rounded p-2 focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div>
+              <label class="block font-medium">Email</label>
+              <input
+                type="email"
+                required
+                class="w-full border border-gray-300 rounded p-2 focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div>
+              <label class="block font-medium">Message</label>
+              <textarea
+                rows="4"
+                required
+                class="w-full border border-gray-300 rounded p-2 focus:ring-2 focus:ring-blue-500"
+              ></textarea>
+            </div>
+            <button
+              type="submit"
+              class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-6">
+      <div class="container mx-auto text-center">
+        <p>&copy; 2025 Two Wheels. All rights reserved.</p>
+        <div class="mt-4">
+          <a href="#" class="text-gray-300 hover:text-white mx-2">Facebook</a>
+          <a href="#" class="text-gray-300 hover:text-white mx-2">Instagram</a>
+          <a href="#" class="text-gray-300 hover:text-white mx-2">Twitter</a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

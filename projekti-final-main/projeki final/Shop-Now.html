@@ -7,29 +7,49 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 </head>
 
-<body class="bg-gray-100 font-sans">
-    <!-- Navbar -->
-    <nav class="bg-gray-800 text-white p-4">
-        <div class="container mx-auto flex justify-between items-center">
-            <h1 class="text-2xl font-bold">Two Wheels</h1>
-            <ul class="flex space-x-6">
-                <li><a href="#" class="hover:text-gray-300">Home</a></li>
-                <li><a href="#" class="hover:text-gray-300">Bicycles</a></li>
-                <li><a href="#" class="hover:text-gray-300">Motorbikes</a></li>
-                <li><a href="#" class="hover:text-gray-300">About</a></li>
-                <li><a href="#" class="hover:text-gray-300">Contact</a></li>
-                <li><a href="map.html" class="hover:text-gray-300">Map</a></li>
-            </ul>
-        </div>
-    </nav>
+    <section id="shop-now" class="section bg-gray-100 p-6 rounded-lg shadow-md">
+      <h2 class="text-2xl font-bold mb-4">Shop Now</h2>
+      <p class="mb-4">Fill in your details below to proceed with your purchase.</p>
 
-    <main>
-        <div style="height: 100px; width: 400px;">
-            <h1 style="color: chocolate; text-align: center;">Shop Now!</h1>
-            <p>Welome to the shopping section of the saloon.<br>
-            Here you can find the best and the most wanted two wheeled<br>
-            vehichles that are in the market today,<br>
-             and of course based o your preferences and desires.<br>
-            </p>
+      <form class="space-y-4">
+        <div>
+          <label for="fullname" class="block font-medium">Full Name</label>
+          <input type="text" id="fullname" name="fullname" required 
+            class="w-full border border-gray-300 rounded p-2 focus:ring-2 focus:ring-blue-500"/>
         </div>
-    </main>
+
+        <div>
+          <label for="email" class="block font-medium">Email Address</label>
+          <input type="email" id="email" name="email" required 
+            class="w-full border border-gray-300 rounded p-2 focus:ring-2 focus:ring-blue-500"/>
+        </div>
+
+        <div>
+          <label for="phone" class="block font-medium">Phone Number</label>
+          <input type="tel" id="phone" name="phone" required 
+            class="w-full border border-gray-300 rounded p-2 focus:ring-2 focus:ring-blue-500"/>
+        </div>
+
+        <div>
+          <label for="address" class="block font-medium">Shipping Address</label>
+          <textarea id="address" name="address" rows="3" required
+            class="w-full border border-gray-300 rounded p-2 focus:ring-2 focus:ring-blue-500"></textarea>
+        </div>
+
+        <div>
+          <label for="payment" class="block font-medium">Payment Method</label>
+          <select id="payment" name="payment" required 
+            class="w-full border border-gray-300 rounded p-2 focus:ring-2 focus:ring-blue-500">
+            <option value="">-- Select a Payment Method --</option>
+            <option value="credit-card">Credit Card</option>
+            <option value="paypal">PayPal</option>
+            <option value="cash-on-delivery">Cash on Delivery</option>
+          </select>
+        </div>
+
+        <button type="submit" 
+          class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition">
+          Place Order
+        </button>
+      </form>
+    </section>
